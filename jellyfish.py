@@ -249,10 +249,11 @@ for q in range(1, 10):     # (6, 7) (1, 10)
                                 columns_with_jellyfish.append(c)
 
                         columns_with_jellyfish.sort()
-
+                        """
                         print('Eliminate (in COLUMNS) number ' + check_number + ' in other rows in the columns:')
                         for a in range(len(columns_with_jellyfish)):
                             print(convert_to_column_letter[columns_with_jellyfish[a]])
+                        """
 
                         for y in columns_with_jellyfish:
                             eliminate_candidates = []
@@ -266,7 +267,8 @@ for q in range(1, 10):     # (6, 7) (1, 10)
                                 if u not in non_eliminate_list:
                                     delete_list = delete_list + [u]
 
-                            print('In column ' + str(convert_to_column_letter[y]) + ' delete row(s) ' + str(delete_list))
+                            if len(delete_list) > 0:
+                                print('In column ' + str(convert_to_column_letter[y]) + ' delete row(s) ' + str(delete_list))
 
 
     # JELLYFISH_COLUMNS:
@@ -341,9 +343,11 @@ for q in range(1, 10):     # (6, 7) (1, 10)
                                 rows_with_jellyfish.append(c)
 
                         rows_with_jellyfish.sort()
+                        """
                         print('Eliminate (in ROWS) number ' + check_number + ' in other columns in the rows:')
                         print(rows_with_jellyfish)
                         print('\n')
+                        """
 
                         for row in rows_with_jellyfish:
                             eliminate_candidates = []
@@ -361,4 +365,5 @@ for q in range(1, 10):     # (6, 7) (1, 10)
                                 if u not in non_eliminate_list_column:
                                     delete_list = delete_list + [u]
 
-                            print('In row ' + str(row) + ' delete column(s) ' + str(delete_list))
+                            if len(delete_list) > 0:
+                                print('In row ' + str(row) + ' delete column(s) ' + str(delete_list))

@@ -247,11 +247,12 @@ for q in range(1, 10):
                             columns_with_swordfish.append(c)
 
                     columns_with_swordfish.sort()
-
+                    """
                     print('Eliminate (in COLUMNS) number ' + check_number + ' in other rows in the columns:')
                     for a in range(len(columns_with_swordfish)):
                         print(convert_to_column_letter[columns_with_swordfish[a]])
                     # print('\n')
+                    """
                     # end = 1
                     # if end == 1:
                     #     sys.exit()
@@ -267,8 +268,8 @@ for q in range(1, 10):
                         for u in eliminate_candidates:
                             if u not in non_eliminate_list:
                                 delete_list_2 = delete_list_2 + [u]
-
-                        print('In column ' + str(convert_to_column_letter[y]) + ' delete row(s) ' + str(delete_list_2))
+                        if len(delete_list_2) > 0:
+                            print('In column ' + str(convert_to_column_letter[y]) + ' delete row(s) ' + str(delete_list_2))
 
 
     # SWORDFISH_COLUMNS:
@@ -340,9 +341,11 @@ for q in range(1, 10):
                             rows_with_swordfish.append(c)
 
                     rows_with_swordfish.sort()
+                    """
                     print('Eliminate (in ROWS) number ' + check_number + ' in other columns in the rows:')
                     print(rows_with_swordfish)
                     print('\n')
+                    """
 
                     for row in rows_with_swordfish:
                         eliminate_candidates = []
@@ -359,5 +362,5 @@ for q in range(1, 10):
                         for u in eliminate_candidates_letter:
                             if u not in non_eliminate_list_column:
                                 delete_list = delete_list + [u]
-
-                        print('In row ' + str(row) + ' delete column(s) ' + str(delete_list))
+                        if len(delete_list) > 0:
+                            print('In row ' + str(row) + ' delete column(s) ' + str(delete_list))

@@ -6,6 +6,7 @@ from parameters import *
 from function_multiple_choice import *
 
 # import SDK with empty cells, call function to fill in with all possible candidates and then import this Excel sheet
+# ENSURE name SDK file is the same in Function_Multiple_Choice
 df_temp = pd.read_excel(io='data/SDK.xlsx', sheet_name='python')
 
 multiple_choice(df_temp)
@@ -242,11 +243,11 @@ for q in range(1, 10):    # (1, 10) (7, 8)
                         columns_with_xwing.append(c)
 
                 columns_with_xwing.sort()
-
+                """
                 print('\nEliminate (in COLUMNS) number ' + check_number + ' in other rows in the columns:')
                 for a in range(len(columns_with_xwing)):
                     print(convert_to_column_letter[columns_with_xwing[a]])
-
+                """
                 for y in columns_with_xwing:
                     eliminate_candidates = []
                     for r in range(9):
@@ -259,7 +260,8 @@ for q in range(1, 10):    # (1, 10) (7, 8)
                         if u not in non_eliminate_list:
                             delete_list_2 = delete_list_2 + [u]
 
-                    print('In column ' + str(convert_to_column_letter[y]) + ' delete row(s) ' + str(delete_list_2))
+                    if len(delete_list_2) > 0:
+                        print('In column ' + str(convert_to_column_letter[y]) + ' delete row(s) ' + str(delete_list_2))
 
 
     # X_WINGS_COLUMNS:
@@ -329,9 +331,11 @@ for q in range(1, 10):    # (1, 10) (7, 8)
                         rows_with_xwing.append(c)
 
                 rows_with_xwing.sort()
+                """
                 print('\nEliminate (in ROWS) number ' + check_number + ' in other columns in the rows:')
                 print(rows_with_xwing)
                 print('\n')
+                """
 
                 for row in rows_with_xwing:
                     eliminate_candidates = []
@@ -349,5 +353,5 @@ for q in range(1, 10):    # (1, 10) (7, 8)
                     for u in eliminate_candidates_letter:
                         if u not in non_eliminate_list_column:
                             delete_list = delete_list + [u]
-
-                    print('In row ' + str(row) + ' delete column(s) ' + str(delete_list))
+                    if len(delete_list) > 0:
+                        print('In row ' + str(row) + ' delete column(s) ' + str(delete_list))
