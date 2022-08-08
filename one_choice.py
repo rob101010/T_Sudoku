@@ -1,3 +1,8 @@
+"""
+For every empty cell make list of all numbers in the column, row & box
+Check if in total list (sum of col, row & box) just 1 unique number missing ==> one_choice
+"""
+
 
 import pandas as pd
 
@@ -50,5 +55,4 @@ for i in range(9):
 
         if pd.isnull(df.iloc[i, j]):
             if len(missing_numbers) < 2:
-                print('one choice fills: ')
-                print('in cell ' + str(i + 1) + str(j + 1) + ' fill in ' + str(missing_numbers))
+                print('one_choice fill in cell ' + str(i + 1) + str(j + 1) + ' fill in ' + str(missing_numbers))

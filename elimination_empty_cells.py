@@ -1,15 +1,22 @@
+"""
+import SDK with empty cells, call function to fill in with all possible candidates and then import this Excel sheet
+"""
 
 import pandas as pd
 import sys
 from itertools import chain
-from parameters import *
-from function_multiple_choice import *
+from functions.function_multiple_choice import multiple_choice
+from functions.parameters import convert_to_column_letter
 
-df_temp = pd.read_excel(io='data/SDK.xlsx', sheet_name='python')
+sys.path.append('home/rob/PycharmProjects/sudoku/functions')
+# from parameters import *
+# from function_multiple_choice import *
+
+df_temp = pd.read_excel(io='data/SDK.xlsx', sheet_name='python')  # change to SDK
 
 multiple_choice(df_temp)
 
-df = pd.read_excel(io='data/SDK_temp_all_candidates.xlsx', sheet_name='python')
+df = pd.read_excel(io='data/SDK_temp_all_candidates.xlsx', sheet_name='python')  # don't change, is outcome function
 
 df = df.astype(int)
 df_str = df.astype(str)
@@ -32,7 +39,6 @@ def occurs_once_col(a, item):
         temp_list = temp_list + [df.iloc[q, col]]
 
     if item not in temp_list:
-        # print(str(item) + ' no !!!!!')
         if a.count(item) == 1:
             print('In col ' + str(convert_to_column_letter[col + 1]) + ' unique value is: ' + str(item))
 
@@ -243,4 +249,3 @@ for item in range(1, 10):
     if item not in box_list_numbers:
         if box_list_int.count(item) == 1:
             print('In box ' + box + ' unique value is: ' + str(item))
-

@@ -1,9 +1,8 @@
 
-import numpy as np
-
+import sys
 import pandas as pd
-from parameters import *
-
+from functions.parameters import convert_to_column_letter
+sys.path.append('/home/rob/PycharmProjects/sudoku/functions')
 
 df = pd.read_excel(io='data/SDK.xlsx', sheet_name='python')
 df = df.fillna(99999)

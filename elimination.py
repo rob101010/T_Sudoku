@@ -7,8 +7,8 @@ Otherwise,  it checks in each row, column and box if there is a unique number
 import pandas as pd
 import sys
 from itertools import chain
+from functions.parameters import convert_to_column_letter
 sys.path.append('/home/rob/PycharmProjects/sudoku/functions')
-from parameters import *
 
 df = pd.read_excel(io='data/SDK.xlsx', sheet_name='python')
 check_nan_in_df = df.isnull().values.any()

@@ -1,11 +1,11 @@
 
-import numpy as np
 import pandas as pd
+import numpy as np
 import sys
-from parameters import *
-from function_multiple_choice import *
+from functions.parameters import convert_to_column_letter
+from functions.function_multiple_choice import multiple_choice
+sys.path.append('/home/rob/PycharmProjects/sudoku/functions')
 
-# import SDK with empty cells, call function to fill in with all possible candidates and then import this Excel sheet
 df_temp = pd.read_excel(io='data/SDK.xlsx', sheet_name='python')
 
 multiple_choice(df_temp)
