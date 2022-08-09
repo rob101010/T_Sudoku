@@ -9,12 +9,11 @@ from functions.function_multiple_choice import multiple_choice
 from functions.parameters import convert_to_column_letter
 
 sys.path.append('home/rob/PycharmProjects/sudoku/functions')
-# from parameters import *
-# from function_multiple_choice import *
+
 
 df_temp = pd.read_excel(io='data/SDK.xlsx', sheet_name='python')  # change to SDK
 
-multiple_choice(df_temp)
+multiple_choice()
 
 df = pd.read_excel(io='data/SDK_temp_all_candidates.xlsx', sheet_name='python')  # don't change, is outcome function
 

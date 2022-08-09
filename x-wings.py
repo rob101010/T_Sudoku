@@ -6,9 +6,8 @@ from functions.parameters import convert_to_column_letter
 from functions.function_multiple_choice import multiple_choice
 sys.path.append('/home/rob/PycharmProjects/sudoku/functions')
 
-df_temp = pd.read_excel(io='data/SDK.xlsx', sheet_name='python')
 
-multiple_choice(df_temp)
+multiple_choice()
 
 df = pd.read_excel(io='data/SDK_temp_all_candidates.xlsx', sheet_name='python')
 
