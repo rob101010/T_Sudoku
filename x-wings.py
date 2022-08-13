@@ -9,7 +9,7 @@ sys.path.append('/home/rob/PycharmProjects/sudoku/functions')
 
 multiple_choice()
 
-df = pd.read_excel(io='data/SDK_temp_all_candidates.xlsx', sheet_name='python')
+df = pd.read_excel(io='data/SDK_temp_all_candidates.xlsx', sheet_name='python', header=None, index_col=False)
 
 # X_wings requires all cells be filled with final numbers or all possible candidates
 check_nan_in_df = df.isnull().values.any()

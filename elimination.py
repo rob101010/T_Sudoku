@@ -10,7 +10,7 @@ from itertools import chain
 from functions.parameters import convert_to_column_letter
 sys.path.append('/home/rob/PycharmProjects/sudoku/functions')
 
-df = pd.read_excel(io='data/SDK.xlsx', sheet_name='python')
+df = pd.read_excel(io='data/SDK.xlsx', sheet_name='python', header=None, index_col=False)
 check_nan_in_df = df.isnull().values.any()
 if check_nan_in_df:
     print('sorry, not all cells contain a number or candidates')

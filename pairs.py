@@ -1,7 +1,7 @@
 
 import pandas as pd
 
-df = pd.read_excel(io='data/SDK.xlsx', sheet_name='python')
+df = pd.read_excel(io='data/SDK.xlsx', sheet_name='python', header=None, index_col=False)
 df = df.fillna(999999)  # to avoid nan,which makes string type impossible: must be 6, so exclude them from quintuplet
 df_str = df.astype(str)   # str is used later to be able to separate 126 in a cell into '1', '2' and '6'
 

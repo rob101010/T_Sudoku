@@ -4,7 +4,7 @@ import pandas as pd
 from functions.parameters import convert_to_column_letter
 sys.path.append('/home/rob/PycharmProjects/sudoku/functions')
 
-df = pd.read_excel(io='data/SDK.xlsx', sheet_name='python')
+df = pd.read_excel(io='data/SDK.xlsx', sheet_name='python', )
 df = df.fillna(99999)
 df = df.astype(int)
 
