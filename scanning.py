@@ -4,9 +4,11 @@ import pandas as pd
 from functions.parameters import convert_to_column_letter
 sys.path.append('/home/rob/PycharmProjects/sudoku/functions')
 
-df = pd.read_excel(io='data/SDK.xlsx', sheet_name='python', )
+column_names = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
+df = pd.read_excel(io='data/SDK.xlsx', sheet_name='python', header=None, index_col=False, names=column_names)
 df = df.fillna(99999)
 df = df.astype(int)
+
 
 # # ignore multiple candidates in cell
 df.loc[df['A'] > 9, 'A'] = 99999
