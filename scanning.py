@@ -6,6 +6,7 @@ sys.path.append('/home/rob/PycharmProjects/sudoku/functions')
 
 column_names = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
 df = pd.read_excel(io='data/SDK.xlsx', sheet_name='python', header=None, index_col=False, names=column_names)
+df = df.iloc[:9, :9]
 df = df.fillna(99999)
 df = df.astype(int)
 
@@ -183,14 +184,15 @@ for q in range(1, 10):  # (1, 10) (4, 5)
     candidate_lost = []
     cell = []
 
-    for row in range(3, 6):
-        for column in range(6, 9):
+    for row in range(3, 6):  # (3, 6)
+        for column in range(6, 9):  # (6, 9)
 
             if df.iloc[row, column] == 99999 and check_number not in df.iloc[row, :].values.tolist() and check_number not in df.iloc[:, column].values.tolist() and check_number not in box_6:
-                candidate_scanning = candidate_scanning + [[row, column]]
+                candidate_scanning = candidate_scanning + [[row + 1, column + 1]]    # added 1
+
                 cell = (row + 1, column + 1)
             if df.iloc[row, column] < 10 or check_number in df.iloc[row, :].values.tolist() or check_number in df.iloc[:, column].values.tolist() or check_number in box_6:
-                candidate_lost = candidate_lost + [[row, column]]
+                candidate_lost = candidate_lost + [[row + 1, column + 1]]   # added 1
 
     if len(candidate_scanning) == 1:
         print('For check_number ' + str(check_number) + ' a scanning result found in box nr VI in cell number ' + str(cell))
@@ -257,3 +259,4 @@ for q in range(1, 10):  # (1, 10) (4, 5)
 
     if len(candidate_scanning) == 1:
         print('For check_number ' + str(check_number) + ' a scanning result found in box nr IX in cell number ' + str(cell))
+

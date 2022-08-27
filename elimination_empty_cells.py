@@ -16,7 +16,7 @@ df_temp = pd.read_excel(io='data/SDK.xlsx', sheet_name='python', header=None, in
 multiple_choice()
 
 df = pd.read_excel(io='data/SDK_temp_all_candidates.xlsx', sheet_name='python')  # don't change, is outcome function
-
+df = df.iloc[:9, :9]
 df = df.astype(int)
 df_str = df.astype(str)
 

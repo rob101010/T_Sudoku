@@ -4,6 +4,7 @@ import numpy as np
 
 
 df = pd.read_excel(io='data/SDK.xlsx', sheet_name='python', header=None, index_col=False)
+df = df.iloc[:9, :9]
 
 all_numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
