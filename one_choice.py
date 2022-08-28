@@ -6,8 +6,11 @@ Check if in total list (sum of col, row & box) just 1 unique number missing ==> 
 
 import pandas as pd
 
-df = pd.read_excel(io='data/SDK.xlsx', sheet_name='python', header=None, index_col=False)
+column_names = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
+
+df = pd.read_excel(io='data/SDK.xlsx', sheet_name='python', header=None, index_col=False, names=column_names)
 df = df.iloc[:9, :9]
+# df.index += 1
 all_numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 for i in range(9):

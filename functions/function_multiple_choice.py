@@ -8,7 +8,9 @@ import numpy as np
 
 
 def multiple_choice():
-    df_temp = pd.read_excel(io='data/SDK.xlsx', sheet_name='python', header=None, index_col=False)
+    column_names = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
+    df_temp = pd.read_excel(io='data/SDK.xlsx', sheet_name='python', header=None, index_col=False, names=column_names)
+    df_temp = df_temp.iloc[:9, :9]
     all_numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
     for i in range(9):
@@ -67,6 +69,7 @@ def multiple_choice():
         df_temp.iloc[:, i] = df_temp.iloc[:, i].apply(np.int64)
 
     # save to Excel
-    writer = pd.ExcelWriter('/home/rob/PycharmProjects/sudoku/data/SDK_temp_all_candidates.xlsx')
-    df_temp.to_excel(writer, sheet_name='python', index=False)
+    writer = pd.ExcelWriter('/home/rob/PycharmProjects/sudoku/data/SDK_output_function_all_candidates.xlsx')
+    df_temp.to_excel(writer, sheet_name='python')
+    # df_temp.to_excel(writer, sheet_name='python', index=False)
     writer.save()

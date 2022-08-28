@@ -2,6 +2,7 @@
 Elimination method requires that all cells are filled with all possible candidates.
 Therefore, if there are empty cells, code will break
 Otherwise,  it checks in each row, column and box if there is a unique number
+In this code not a reference to function to fill empty cells with all candidates
 """
 
 import pandas as pd
@@ -10,8 +11,13 @@ from itertools import chain
 from functions.parameters import convert_to_column_letter
 sys.path.append('/home/rob/PycharmProjects/sudoku/functions')
 
-df = pd.read_excel(io='data/SDK.xlsx', sheet_name='python', header=None, index_col=False)
+
+column_names = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
+
+df = pd.read_excel(io='data/SDK.xlsx', sheet_name='python', header=None, index_col=False, names=column_names)
 df = df.iloc[:9, :9]
+# df.index += 1
+
 check_nan_in_df = df.isnull().values.any()
 if check_nan_in_df:
     print('sorry, not all cells contain a number or candidates')
@@ -41,7 +47,6 @@ def occurs_once_col(a, item):
         temp_list = temp_list + [df.iloc[q, col]]
 
     if item not in temp_list:
-        # print(str(item) + ' no !!!!!')
         if a.count(item) == 1:
             print('elimination requires all cells are filled in with all possible candidates')
             print('In col ' + str(convert_to_column_letter[col + 1]) + ' unique value is: ' + str(item))
@@ -253,4 +258,3 @@ for item in range(1, 10):
     if item not in box_list_numbers:
         if box_list_int.count(item) == 1:
             print('In box ' + box + ' unique value is: ' + str(item))
-

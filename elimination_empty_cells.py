@@ -11,12 +11,14 @@ from functions.parameters import convert_to_column_letter
 sys.path.append('home/rob/PycharmProjects/sudoku/functions')
 
 
-df_temp = pd.read_excel(io='data/SDK.xlsx', sheet_name='python', header=None, index_col=False)
-
 multiple_choice()
 
-df = pd.read_excel(io='data/SDK_temp_all_candidates.xlsx', sheet_name='python')  # don't change, is outcome function
-df = df.iloc[:9, :9]
+column_names = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
+
+# DON'T CHANGE EXCEL FILE NAME: IS OUTPUT FUNCTION
+df = pd.read_excel(io='data/SDK_output_function_all_candidates.xlsx', sheet_name='python', header=None, index_col=False, names=column_names)
+df = df.iloc[1:10, :9]
+# df.index += 1
 df = df.astype(int)
 df_str = df.astype(str)
 
