@@ -7,7 +7,7 @@ sys.path.append('/home/rob/PycharmProjects/sudoku/functions')
 column_names = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
 df = pd.read_excel(io='data/SDK.xlsx', sheet_name='python', header=None, index_col=False, names=column_names)
 df = df.iloc[:9, :9]
-# df.index += 1
+df.index += 1
 df = df.fillna(99999)
 df = df.astype(int)
 

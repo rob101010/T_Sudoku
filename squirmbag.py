@@ -10,11 +10,11 @@ sys.path.append('/home/rob/PycharmProjects/sudoku/functions')
 multiple_choice()
 
 
-column_names = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
+# Don't change name Excel file:is output file from function
+df = pd.read_excel(io='data/SDK_output_function_all_candidates.xlsx', sheet_name='python', index_col=False)
+df = df.iloc[:9, 1:10]
+df.index += 1
 
-df = pd.read_excel(io='data/SDK_output_function_all_candidates.xlsx', sheet_name='python', header=None, index_col=False, names=column_names)
-df = df.iloc[1:10, :9]
-# df.index += 1
 
 # Squirmbag requires all cells be filled with final numbers or all possible candidates
 check_nan_in_df = df.isnull().values.any()

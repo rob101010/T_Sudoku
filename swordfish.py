@@ -1,4 +1,4 @@
-# df row 1 is header o till 8
+
 import pandas as pd
 import numpy as np
 import sys
@@ -9,9 +9,12 @@ sys.path.append('/home/rob/PycharmProjects/sudoku/functions')
 
 multiple_choice()
 
-df = pd.read_excel(io='data/SDK_output_function_all_candidates.xlsx', sheet_name='python', header=None, index_col=False)
-df = df.iloc[1:10, :9]
-# df.index += 1
+
+# Don't change name Excel file:is output file from function
+df = pd.read_excel(io='data/SDK_output_function_all_candidates.xlsx', sheet_name='python', index_col=False)
+df = df.iloc[:9, 1:10]
+df.index += 1
+
 
 # swordfish requires all cells be filled with final numbers or all possible candidates
 check_nan_in_df = df.isnull().values.any()

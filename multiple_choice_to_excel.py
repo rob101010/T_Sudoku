@@ -6,7 +6,10 @@ column_names = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
 
 df = pd.read_excel(io='data/SDK.xlsx', sheet_name='python', header=None, index_col=False, names=column_names)
 df = df.iloc[:9, :9]
-# df.index += 1
+
+df_show = df.copy()   # only to see Dataframe in PyCharm with rows index 1 to 9
+df_show.index += 1
+
 all_numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 

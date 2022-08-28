@@ -10,6 +10,7 @@ sys.path.append('/home/rob/PycharmProjects/sudoku/functions')
 multiple_choice()
 
 
+# Don't change name Excel file:is output file from function
 df = pd.read_excel(io='data/SDK_output_function_all_candidates.xlsx', sheet_name='python', index_col=False)
 df = df.iloc[:9, 1:10]
 df.index += 1
@@ -22,10 +23,6 @@ if check_nan_in_df:
     sys.exit()
 else:
     print('All cells contain either a number or candidates')
-
-
-# # Dataframe, which only shows cell with multiple possible entries.
-# df[df < 10] = 0
 
 
 def mlist(n):
