@@ -10,3 +10,9 @@ convert_to_column_letter = {1: 'A',
                             10: 'Z',
                             11: 'W'
                             }
+
+
+empty_cells = {
+    '1': 'df_empty',
+    '2': 'df_filled'
+}
