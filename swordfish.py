@@ -29,14 +29,15 @@ else:
     df = pd.read_excel(io='data/SDK_output_function_all_candidates.xlsx', sheet_name='python', index_col=False)
     print(file)
 
+# # DON'T CHANGE EXCEL FILE NAME: IS OUTPUT FUNCTION
+# df = pd.read_excel(io='data/SDK_output_function_all_candidates.xlsx', sheet_name='python')
+# df = df.iloc[:, 1:10]
+#
+# df_show = df.copy()   # only to see Dataframe in PyCharm with rows index 1 to 9
+# df_show.index += 1
+#
+#
 
-#
-# # Don't change name Excel file:is output file from function
-# df = pd.read_excel(io='data/SDK_output_function_all_candidates.xlsx', sheet_name='python', index_col=False)
-# df = df.iloc[:9, 1:10]
-# df.index += 1
-#
-#
 # # swordfish requires all cells be filled with final numbers or all possible candidates
 # check_nan_in_df = df.isnull().values.any()
 # if check_nan_in_df:

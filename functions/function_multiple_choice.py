@@ -8,9 +8,9 @@ import numpy as np
 
 
 def multiple_choice():
-    column_names = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
-    df_temp = pd.read_excel(io='data/SDK.xlsx', sheet_name='python', header=None, index_col=False, names=column_names)
+    df_temp = pd.read_excel(io='data/SDK.xlsx', sheet_name='python', header=None, index_col=False)
     df_temp = df_temp.iloc[:9, :9]
+    df_temp.columns = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
     all_numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
     for i in range(9):

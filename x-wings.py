@@ -9,11 +9,13 @@ sys.path.append('/home/rob/PycharmProjects/sudoku/functions')
 
 multiple_choice()
 
+# DON'T CHANGE EXCEL FILE NAME: IS OUTPUT FUNCTION
+df = pd.read_excel(io='data/SDK_output_function_all_candidates.xlsx', sheet_name='python')
+df = df.iloc[:, 1:10]
 
-# Don't change name Excel file:is output file from function
-df = pd.read_excel(io='data/SDK_output_function_all_candidates.xlsx', sheet_name='python', index_col=False)
-df = df.iloc[:9, 1:10]
-df.index += 1
+df_show = df.copy()   # only to see Dataframe in PyCharm with rows index 1 to 9
+df_show.index += 1
+
 
 
 # X_wings requires all cells be filled with final numbers or all possible candidates
