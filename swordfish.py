@@ -9,8 +9,8 @@ from functions.function_multiple_choice import multiple_choice
 sys.path.append('/home/rob/PycharmProjects/sudoku/functions')
 
 while True:
-    empty_cells = input('choose 1 in case you allow empty cells and 2 if program must fill all empty cells')
-    if empty_cells not in empty_cells.keys():
+    empty_cell = input('choose 1 in case you allow empty cells and 2 if program must fill all empty cells')
+    if empty_cell not in empty_cells.keys():
         print('please select 1 if you allow empty cells or 2 if program must fill empty cells')
     else:
         break
@@ -18,8 +18,18 @@ while True:
 multiple_choice()
 
 
-file = empty_cells
-print(file)
+file = empty_cell
+
+
+if file == 1:
+    df = pd.read_excel(io='data/SDK', sheet_name='python', index_col=False)
+    print(file)
+
+else:
+    df = pd.read_excel(io='data/SDK_output_function_all_candidates.xlsx', sheet_name='python', index_col=False)
+    print(file)
+
+
 #
 # # Don't change name Excel file:is output file from function
 # df = pd.read_excel(io='data/SDK_output_function_all_candidates.xlsx', sheet_name='python', index_col=False)

@@ -13,6 +13,6 @@ convert_to_column_letter = {1: 'A',
 
 
 empty_cells = {
-    '1': 'df_empty',
-    '2': 'df_filled'
+    '1': 1,
+    '2': 2
 }
