@@ -3,28 +3,41 @@ import pandas as pd
 import numpy as np
 import sys
 from functions.parameters import convert_to_column_letter
+from functions.parameters import empty_cells
 from functions.function_multiple_choice import multiple_choice
+
 sys.path.append('/home/rob/PycharmProjects/sudoku/functions')
 
+while True:
+    empty_cell = input('choose 1 in case you allow empty cells and 2 if program must fill all empty cells')
+    if empty_cell not in empty_cells.keys():
+        print('please select 1 if you allow empty cells or 2 if program must fill empty cells')
+    else:
+        break
 
 multiple_choice()
 
-# DON'T CHANGE EXCEL FILE NAME: IS OUTPUT FUNCTION
-df = pd.read_excel(io='data/SDK_output_function_all_candidates.xlsx', sheet_name='python')
-df = df.iloc[:, 1:10]
 
-df_show = df.copy()   # only to see Dataframe in PyCharm with rows index 1 to 9
-df_show.index += 1
+file = empty_cell
 
 
+if file == '1':
+    print('\nit is allowed to have empty cells')
+    column_names = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
+    df = pd.read_excel(io='data/SDK.xlsx', sheet_name='python', header=None, index_col=False, names=column_names)
+    df = df.iloc[:9, :9]
+    df_show = df.copy()  # only to see Dataframe in PyCharm with rows index 1 to 9
+    df_show.index += 1
+    df.fillna(0, inplace=True)
 
-# X_wings requires all cells be filled with final numbers or all possible candidates
-check_nan_in_df = df.isnull().values.any()
-if check_nan_in_df:
-    print('sorry, not all cells contain a number or candidates')
-    sys.exit()
 else:
-    print('All cells contain either a number or candidates')
+    print('empty cells are filled with all possible candidates')
+    df = pd.read_excel(io='data/SDK_output_function_all_candidates.xlsx', sheet_name='python', index_col=False)
+    df = df.iloc[:, 1:10]
+    df_show = df.copy()  # only to see Dataframe in PyCharm with rows index 1 to 9
+    df_show.index += 1
+
+
 
 
 def mlist(n):
@@ -232,8 +245,6 @@ for q in range(1, 10):    # (1, 10) (7, 8)
             xwing_number = len(set(xwing_flat))
 
             if xwing_number == 2:
-                print('\nX-WING_row detected for number ' + check_number)
-                print('in ' + str(record_row_number[i]) + ' ' + str(record_row_number[j]))
                 non_eliminate_list = []
                 non_eliminate_list = [[int(record_row_number[i][-1])] + [int(record_row_number[j][-1])]]
                 non_eliminate_list = [x for xs in non_eliminate_list for x in xs]
@@ -252,7 +263,6 @@ for q in range(1, 10):    # (1, 10) (7, 8)
                 for y in columns_with_xwing:
                     eliminate_candidates = []
                     for r in range(9):
-                        # if df_sudoku['B'].iloc[r] == 6:
                         if df_sudoku.iloc[r, y - 1] == check_number_int:  # y-1 because column_with_swordfish has column B as 2
                             eliminate_candidates = eliminate_candidates + [r + 1]
 
@@ -262,6 +272,8 @@ for q in range(1, 10):    # (1, 10) (7, 8)
                             delete_list_2 = delete_list_2 + [u]
 
                     if len(delete_list_2) > 0:
+                        print('\nX-WING_row detected for number ' + check_number)
+                        print('in ' + str(record_row_number[i]) + ' ' + str(record_row_number[j]))
                         print('In column ' + str(convert_to_column_letter[y]) + ' delete row(s) ' + str(delete_list_2))
 
 
@@ -320,8 +332,6 @@ for q in range(1, 10):    # (1, 10) (7, 8)
             xwing_column_number = len(set(xwing_column_flat))
 
             if xwing_column_number == 2:
-                print('\nX-WING_column detected for number ' + check_number)
-                print('in ' + str(record_column_number[i]) + ' ' + str(record_column_number[j]))
                 non_eliminate_list_column = []
                 non_eliminate_list_column = [[(record_column_number[i][-1])] + [(record_column_number[j][-1])]]
                 non_eliminate_list_column = [x for xs in non_eliminate_list_column for x in xs]
@@ -341,7 +351,6 @@ for q in range(1, 10):    # (1, 10) (7, 8)
                 for row in rows_with_xwing:
                     eliminate_candidates = []
                     for col in range(9):
-                        # if df_sudoku['B'].iloc[r] == 6:
                         if df_sudoku.iloc[row - 1, col] == check_number_int:  # CHECK NUMBER!!!!!
                             eliminate_candidates = eliminate_candidates + [col + 1]
 
@@ -355,4 +364,6 @@ for q in range(1, 10):    # (1, 10) (7, 8)
                         if u not in non_eliminate_list_column:
                             delete_list = delete_list + [u]
                     if len(delete_list) > 0:
+                        print('\nX-WING_column detected for number ' + check_number)
+                        print('in ' + str(record_column_number[i]) + ' ' + str(record_column_number[j]))
                         print('In row ' + str(row) + ' delete column(s) ' + str(delete_list))

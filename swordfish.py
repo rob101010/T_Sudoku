@@ -22,7 +22,7 @@ file = empty_cell
 
 
 if file == '1':
-    print('it is allowed to have empty cells')
+    print('\nit is allowed to have empty cells')
     column_names = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
     df = pd.read_excel(io='data/SDK.xlsx', sheet_name='python', header=None, index_col=False, names=column_names)
     df = df.iloc[:9, :9]
@@ -248,9 +248,6 @@ for q in range(1, 10):
                 swordfish_number = len(set(swordfish_flat))
 
                 if swordfish_number == 3:
-                    print('\nSWORDFISH_row detected for number ' + check_number)
-                    print('in ' + str(record_row_number[i]) + ', ' + str(record_row_number[j]) + ', ' + str(
-                        record_row_number[k]))
                     non_eliminate_list = []
                     non_eliminate_list = [[int(record_row_number[i][-1])] + [int(record_row_number[j][-1])] + [int(record_row_number[k][-1])]]
                     non_eliminate_list = [x for xs in non_eliminate_list for x in xs]
@@ -261,12 +258,12 @@ for q in range(1, 10):
                             columns_with_swordfish.append(c)
 
                     columns_with_swordfish.sort()
-                    """
-                    print('Eliminate (in COLUMNS) number ' + check_number + ' in other rows in the columns:')
-                    for a in range(len(columns_with_swordfish)):
-                        print(convert_to_column_letter[columns_with_swordfish[a]])
+
+                    # print('Eliminate (in COLUMNS) number ' + check_number + ' in other rows in the columns:')
+                    # for a in range(len(columns_with_swordfish)):
+                    #     print(convert_to_column_letter[columns_with_swordfish[a]])
                     # print('\n')
-                    """
+
                     # end = 1
                     # if end == 1:
                     #     sys.exit()
@@ -274,7 +271,6 @@ for q in range(1, 10):
                     for y in columns_with_swordfish:
                         eliminate_candidates = []
                         for r in range(9):
-                            # if df_sudoku['B'].iloc[r] == 6:
                             if df_sudoku.iloc[r, y - 1] == check_number_int:    # y-1 because column_with_swordfish has column B as 2
                                 eliminate_candidates = eliminate_candidates + [r + 1]
 
@@ -283,6 +279,9 @@ for q in range(1, 10):
                             if u not in non_eliminate_list:
                                 delete_list_2 = delete_list_2 + [u]
                         if len(delete_list_2) > 0:
+                            print('\nSWORDFISH_row detected for number ' + check_number)
+                            print('in ' + str(record_row_number[i]) + ', ' + str(record_row_number[j]) + ', ' + str(
+                                record_row_number[k]))
                             print('In column ' + str(convert_to_column_letter[y]) + ' delete row(s) ' + str(delete_list_2))
 
 
@@ -343,8 +342,6 @@ for q in range(1, 10):
                 swordfish_column_number = len(set(swordfish_column_flat))
 
                 if swordfish_column_number == 3:
-                    print('\nSWORDFISH_column detected for number ' + check_number)
-                    print('in ' + str(record_column_number[i]) + ', ' + str(record_column_number[j]) + ', ' + str(record_column_number[k]))
                     non_eliminate_list_column = []
                     non_eliminate_list_column = [[(record_column_number[i][-1])] + [(record_column_number[j][-1])] + [(record_column_number[k][-1])]]
                     non_eliminate_list_column = [x for xs in non_eliminate_list_column for x in xs]
@@ -355,16 +352,15 @@ for q in range(1, 10):
                             rows_with_swordfish.append(c)
 
                     rows_with_swordfish.sort()
-                    """
-                    print('Eliminate (in ROWS) number ' + check_number + ' in other columns in the rows:')
-                    print(rows_with_swordfish)
-                    print('\n')
-                    """
+
+                    # print('Eliminate (in ROWS) number ' + check_number + ' in other columns in the rows:')
+                    # print(rows_with_swordfish)
+                    # print('\n')
+
 
                     for row in rows_with_swordfish:
                         eliminate_candidates = []
                         for col in range(9):
-                            # if df_sudoku['B'].iloc[r] == 6:
                             if df_sudoku.iloc[row - 1, col] == check_number_int:   # CHECK NUMBER!!!!!
                                 eliminate_candidates = eliminate_candidates + [col + 1]
 
@@ -377,4 +373,6 @@ for q in range(1, 10):
                             if u not in non_eliminate_list_column:
                                 delete_list = delete_list + [u]
                         if len(delete_list) > 0:
+                            print('\nSWORDFISH_column detected for number ' + check_number)
+                            print('in ' + str(record_column_number[i]) + ', ' + str(record_column_number[j]) + ', ' + str(record_column_number[k]))
                             print('In row ' + str(row) + ' delete column(s) ' + str(delete_list))
