@@ -21,10 +21,10 @@ box_series_1 = pd.Series([''], index=[0])
 for row_box in range(3):
     for column_box in range(3):
         cell_index = str(row_box + 1) + str(column_box + 1)
-        cell = df.iloc[row_box, column_box]
+        cell = df_str.iloc[row_box, column_box]
         cell_sep = list(cell)
         series_temp = pd.Series([cell_sep], index=[int(cell_index)])
-        box_series_1_series = box_series_1.append(series_temp)
+        box_series_1 = box_series_1.append(series_temp)
 
 # box 2
 i = -1
@@ -88,26 +88,20 @@ df_box_str = df_box.astype(str)
 for row in range(1):
     for column in range(1):
         buddy_series = pd.Series(['1'], index=[0])    # make sure to delete this first entry in Series
-        # for i in range(9):
-        #     cell_index = str(row + 1) + str(i + 1)
-        #     cell = df_str.iloc[row, i]              # loop through each cell in column
-        #     cell_sep = list(cell)                   # each double number as 2 separate numbers in string (26 = '2','6')
-        #     series_temp = pd.Series([cell_sep], index=[int(cell_index)])
-        #     buddy_series = buddy_series.append(series_temp)
-        # for j in range(9):
-        #     cell_index = str(j + 1) + str(column + 1)
-        #     cell = df_str.iloc[j, column]           # loop through each cell in row
-        #     cell_sep = list(cell)
-        #     series_temp = pd.Series([cell_sep], index=[int(cell_index)])
-        #     buddy_series = buddy_series.append(series_temp)
-
-        for k in range(9):
-            cell_index = str(row + 1) + str(k + 1)
-            cell = df_box_str.iloc[row, k]          # loop through each cell in row in box df
+        for i in range(9):
+            cell_index = str(row + 1) + str(i + 1)
+            cell = df_str.iloc[row, i]              # loop through each cell in column
             cell_sep = list(cell)                   # each double number as 2 separate numbers in string (26 = '2','6')
             series_temp = pd.Series([cell_sep], index=[int(cell_index)])
             buddy_series = buddy_series.append(series_temp)
+        for j in range(9):
+            cell_index = str(j + 1) + str(column + 1)
+            cell = df_str.iloc[j, column]           # loop through each cell in row
+            cell_sep = list(cell)
+            series_temp = pd.Series([cell_sep], index=[int(cell_index)])
+            buddy_series = buddy_series.append(series_temp)
 
-
+        buddy_series = buddy_series.append(box_series_1)
+        buddy_series = buddy_series.drop(labels=[0])
         index = buddy_series.index
         buddy_series_unique = buddy_series[~index.duplicated(keep='first')]
