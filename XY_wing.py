@@ -1,4 +1,3 @@
-#  in printing change column 2 to column B (e.g.)
 import pandas as pd
 
 column_names = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
@@ -105,3 +104,4 @@ for row in range(1):
         buddy_series = buddy_series.drop(labels=[0])
         index = buddy_series.index
         buddy_series_unique = buddy_series[~index.duplicated(keep='first')]
+

@@ -7,11 +7,13 @@ column_names = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
 df = pd.read_excel(io='data/SDK.xlsx', sheet_name='python', header=None, index_col=False, names=column_names)
 df = df.iloc[:9, :9]
 df.index += 1
-df = df.fillna(999999)  # to avoid nan,which makes string type impossible: must be 6, so exclude them from quintuplet
+df = df.fillna(999999)  # to avoid nan,which makes string type impossible: must be 6'9', so exclude them from quintuplet
 df_str = df.astype(str)   # str is used later to be able to separate 126 in a cell into '1', '2' and '6'
 
 # convert df to new df in which each BOX is added as a row
 df_box = df.astype(int)
+
+# Create new DataFrame df_box, in which each box is converted to a row
 
 # box 1
 i = -1
@@ -19,6 +21,8 @@ for row_box in range(3):
     for column_box in range(3):
         i += 1
         df_box.iloc[0, i] = df.iloc[row_box, column_box]
+        print(' box 1')
+        print(df_box.iloc[0, i])
 
 # box 2
 i = -1
