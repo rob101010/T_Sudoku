@@ -10,7 +10,7 @@ from functions.parameters import convert_to_column_letter
 
 sys.path.append('home/rob/PycharmProjects/sudoku/functions')
 
-
+# calls function to fill all empty cells with all possible candidates
 multiple_choice()
 
 

@@ -1,4 +1,3 @@
-#  in printing change column 2 to column B (e.g.)
 import pandas as pd
 
 
@@ -21,8 +20,6 @@ for row_box in range(3):
     for column_box in range(3):
         i += 1
         df_box.iloc[0, i] = df.iloc[row_box, column_box]
-        print(' box 1')
-        print(df_box.iloc[0, i])
 
 # box 2
 i = -1

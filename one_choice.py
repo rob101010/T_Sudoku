@@ -34,7 +34,6 @@ for i in range(9):
             if i // 3 == 2:
                 r_low = 6
                 r_high = 9
-
             if j // 3 == 0:
                 c_low = 0
                 c_high = 3

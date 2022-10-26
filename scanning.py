@@ -1,3 +1,8 @@
+"""
+Allow empty cells in DF ==> filled with 99999
+Program will scan for all empty cells or cells with multiple entries
+"""
+
 
 import sys
 import pandas as pd
@@ -12,7 +17,7 @@ df = df.fillna(99999)
 df = df.astype(int)
 
 
-# # ignore multiple candidates in cell
+# ignore cells with multiple entries ==> replace them also with 99999
 df.loc[df['A'] > 9, 'A'] = 99999
 df.loc[df['B'] > 9, 'B'] = 99999
 df.loc[df['C'] > 9, 'C'] = 99999
@@ -87,11 +92,13 @@ for q in range(1, 10):  # (1, 10) (4, 5)
             if df.iloc[row, column] == 99999 and check_number not in df.iloc[row, :].values.tolist() and check_number not in df.iloc[:, column].values.tolist() and check_number not in box_1:
                 candidate_scanning = candidate_scanning + [[row, column]]
                 cell = (row + 1, column + 1)
+            # code below is just a check and not required for the program. Each number (1 to 9) is either
+            # a candidate_scanning or candidate_lost. Check program that sum of these 2 lists has all numbers 1 to 9
             if df.iloc[row, column] < 10 or check_number in df.iloc[row, :].values.tolist() or check_number in df.iloc[:, column].values.tolist() or check_number in box_1:
                 candidate_lost = candidate_lost + [[row, column]]
 
     if len(candidate_scanning) == 1:
-        print('For check_number ' + str(check_number) + ' a scanning result found in box nr I in cell number ' + str(cell))
+        print('For check_number ' + str(check_number) + ' a scanning result in box nr I    in cell number ' + str(cell))
 
 
 # Scanning on Box II
@@ -112,7 +119,7 @@ for q in range(1, 10):  # (1, 10) (4, 5)
                 candidate_lost = candidate_lost + [[row, column]]
 
     if len(candidate_scanning) == 1:
-        print('For check_number ' + str(check_number) + ' a scanning result found in box nr II in cell number ' + str(cell))
+        print('For check_number ' + str(check_number) + ' a scanning result in box nr II   in cell number ' + str(cell))
 
 
 # Scanning on Box III
@@ -133,7 +140,7 @@ for q in range(1, 10):  # (1, 10) (4, 5)
                 candidate_lost = candidate_lost + [[row, column]]
 
     if len(candidate_scanning) == 1:
-        print('For check_number ' + str(check_number) + ' a scanning result found in box nr III in cell number ' + str(cell))
+        print('For check_number ' + str(check_number) + ' a scanning result in box nr III  in cell number ' + str(cell))
 
 
 # Scanning on Box IV
@@ -153,7 +160,7 @@ for q in range(1, 10):  # (1, 10) (4, 5)
                 candidate_lost = candidate_lost + [[row, column]]
 
     if len(candidate_scanning) == 1:
-        print('For check_number ' + str(check_number) + ' a scanning result found in box nr IV in cell number ' + str(cell))
+        print('For check_number ' + str(check_number) + ' a scanning result in box nr IV   in cell number ' + str(cell))
 
 
 # Scanning on Box V
@@ -174,7 +181,7 @@ for q in range(1, 10):  # (1, 10) (4, 5)
                 candidate_lost = candidate_lost + [[row, column]]
 
     if len(candidate_scanning) == 1:
-        print('For check_number ' + str(check_number) + ' a scanning result found in box nr V in cell number ' + str(cell))
+        print('For check_number ' + str(check_number) + ' a scanning result in box nr V    in cell number ' + str(cell))
 
 
 # Scanning on Box VI
@@ -196,7 +203,7 @@ for q in range(1, 10):  # (1, 10) (4, 5)
                 candidate_lost = candidate_lost + [[row + 1, column + 1]]   # added 1
 
     if len(candidate_scanning) == 1:
-        print('For check_number ' + str(check_number) + ' a scanning result found in box nr VI in cell number ' + str(cell))
+        print('For check_number ' + str(check_number) + ' a scanning result in box nr VI   in cell number ' + str(cell))
 
 
 # Scanning on Box VII
@@ -217,7 +224,7 @@ for q in range(1, 10):  # (1, 10) (4, 5)
                 candidate_lost = candidate_lost + [[row, column]]
 
     if len(candidate_scanning) == 1:
-        print('For check_number ' + str(check_number) + ' a scanning result found in box nr VII in cell number ' + str(cell))
+        print('For check_number ' + str(check_number) + ' a scanning result in box nr VII  in cell number ' + str(cell))
 
 
 # Scanning on Box VIII
@@ -238,7 +245,7 @@ for q in range(1, 10):  # (1, 10) (4, 5)
                 candidate_lost = candidate_lost + [[row, column]]
 
     if len(candidate_scanning) == 1:
-        print('For check_number ' + str(check_number) + ' a scanning result found in box nr VIII in cell number ' + str(cell))
+        print('For check_number ' + str(check_number) + ' a scanning result in box nr VIII in cell number ' + str(cell))
 
 
 # Scanning on Box IX
@@ -259,5 +266,5 @@ for q in range(1, 10):  # (1, 10) (4, 5)
                 candidate_lost = candidate_lost + [[row, column]]
 
     if len(candidate_scanning) == 1:
-        print('For check_number ' + str(check_number) + ' a scanning result found in box nr IX in cell number ' + str(cell))
+        print('For check_number ' + str(check_number) + ' a scanning result in box nr IX   in cell number ' + str(cell))
 

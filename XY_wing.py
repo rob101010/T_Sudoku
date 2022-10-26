@@ -1,4 +1,7 @@
 """
+XY wing and XYZ wing
+
+
 For each cell, check if it can be XY. Create buddy_list for each cell, with potential XY_cell always first entry in BL
 Buddy_list (BL) is potential XY cello, then same row, then same column, then same box (all 9 boxes are first created).
 As you first add rows, then columns, then box you get double entries where they overlap. Double entries are removed

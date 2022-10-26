@@ -22,10 +22,10 @@ df_show.index += 1
 
 check_nan_in_df = df.isnull().values.any()
 if check_nan_in_df:
-    print('sorry, not all cells contain a number or candidates')
+    print('\nsorry, not all cells contain a number or candidates')
     sys.exit()
 else:
-    print('All cells contain either a number or candidates')
+    print('\nAll cells contain either a number or candidates\n')
 
 df = df.astype(int)
 df_str = df.astype(str)
@@ -35,11 +35,9 @@ def occurs_once_row(a, item):
     temp_list = []
     for q in range(9):
         temp_list = temp_list + [df.iloc[row, q]]
-        # print(temp_list)
 
     if item not in temp_list:
         if a.count(item) == 1:
-            print('elimination requires all cells are filled in with all possible candidates')
             print('In row ' + str(row + 1) + ' unique value is: ' + str(item))
 
 
@@ -50,7 +48,6 @@ def occurs_once_col(a, item):
 
     if item not in temp_list:
         if a.count(item) == 1:
-            print('elimination requires all cells are filled in with all possible candidates')
             print('In col ' + str(convert_to_column_letter[col + 1]) + ' unique value is: ' + str(item))
 
 
