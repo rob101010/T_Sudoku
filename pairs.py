@@ -9,10 +9,11 @@ df.index += 1
 df = df.fillna(999999)  # to avoid nan,which makes string type impossible: must be 6'9', so exclude them from quintuplet
 df_str = df.astype(str)   # str is used later to be able to separate 126 in a cell into '1', '2' and '6'
 
-# convert df to new df in which each BOX is added as a row
-df_box = df.astype(int)
 
 # Create new DataFrame df_box, in which each box is converted to a row
+
+# make copy of df, so df_box has right dimensions
+df_box = df.astype(int)
 
 # box 1
 i = -1
