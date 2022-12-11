@@ -29,6 +29,7 @@ if file == '1':
     df_show = df.copy()  # only to see Dataframe in PyCharm with rows index 1 to 9
     df_show.index += 1
     df.fillna(0, inplace=True)
+    df = df.astype(int)
 
 else:
     print('empty cells are filled with all possible candidates')

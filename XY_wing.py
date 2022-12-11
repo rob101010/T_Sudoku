@@ -3,7 +3,7 @@ XY wing and XYZ wing
 
 
 For each cell, check if it can be XY. Create buddy_list for each cell, with potential XY_cell always first entry in BL
-Buddy_list (BL) is potential XY cello, then same row, then same column, then same box (all 9 boxes are first created).
+Buddy_list (BL) is potential XY cell, then same row, then same column, then same box (all 9 boxes are first created).
 As you first add rows, then columns, then box you get double entries where they overlap. Double entries are removed
 
 In buddy_list, check if potential XY_cell has 2 entries, i.e. 2 potential numbers for that cell.
@@ -18,7 +18,7 @@ z_index_list         for z_list itt gives the index of the cells
 z_both_numbers_list  is content of potential Z_cells, given as 1 number, so '7' '8' becomes 78
 
 Finally, check if potential XY and Z1 and Z2 indeed XY_wing.
-For each possible combinations oif Z1 and Z2 in the list do following checks:
+For each possible combinations of Z1 and Z2 in the list do following checks:
 - Z_1 and Z_2 are NOT a pair and indeed share the sane Z-value
 -  Z_1 and Z_2 are NOT buddies of each other, because then no XY_wing!!)
 
@@ -43,7 +43,9 @@ column_names = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
 df = pd.read_excel(io='data/SDK.xlsx', sheet_name='python', header=None, index_col=False, names=column_names)
 df = df.iloc[:9, :9]
 df.index += 1
-df = df.fillna(999999)  # to avoid nan,which makes string type impossible: must be 6'9', so exclude them from quintuplet
+df = df.fillna(999999)  # string type requires non NAN: must be 6 times '9', to exclude them from quintuplet
+df = df.astype(int)
+
 df_str = df.astype(str)  # str is used later to be able to separate 126 in a cell into '1', '2' and '6'
 
 # box 1
@@ -150,15 +152,15 @@ for row in range(9):  # for each cell create buddy_list. First add this cell as 
     for column in range(9):
         cell_start_row_column_index = str(row + 1) + str(column + 1)  # row_column cell is pot. XY ==> top buddy list
         cell_start_row_column = df_str.iloc[row, column]
-        cell_start_row_column_sep = list(cell_start_row_column)
+        cell_start_row_column_sep = list(cell_start_row_column)  # each double number as 2 sep # in string(26 = '2','6')
         buddy_series = pd.Series([cell_start_row_column_sep], index=[int(cell_start_row_column_index)])
-        for i in range(9):
+        for i in range(9):  # add the row to buddy_list
             cell_index = str(row + 1) + str(i + 1)
             cell = df_str.iloc[row, i]  # loop through each cell in column
             cell_sep = list(cell)  # each double number as 2 separate numbers in string (26 = '2','6')
             series_temp = pd.Series([cell_sep], index=[int(cell_index)])
             buddy_series = buddy_series.append(series_temp)
-        for j in range(9):
+        for j in range(9):  # add the column to buddy_list
             cell_index = str(j + 1) + str(column + 1)
             cell = df_str.iloc[j, column]  # loop through each cell in row
             cell_sep = list(cell)

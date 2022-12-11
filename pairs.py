@@ -6,8 +6,9 @@ column_names = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
 df = pd.read_excel(io='data/SDK.xlsx', sheet_name='python', header=None, index_col=False, names=column_names)
 df = df.iloc[:9, :9]
 df.index += 1
-df = df.fillna(999999)  # to avoid nan,which makes string type impossible: must be 6'9', so exclude them from quintuplet
-df_str = df.astype(str)   # str is used later to be able to separate 126 in a cell into '1', '2' and '6'
+df = df.fillna(999999)   # avoid nan,which makes string type impossible: must be 6 x'9', so exclude them from quintuplet
+df = df.astype(int)      # after fillna, those cells become float, with a .0 in end ==> remove .0 by back to int
+df_str = df.astype(str)  # str is used later to be able to separate 126 in a cell into '1', '2' and '6'
 
 
 # Create new DataFrame df_box, in which each box is converted to a row
@@ -86,6 +87,7 @@ df_box_str = df_box.astype(str)
 # for triplets include cells with 2 and three candidates, for quadruplets 2, 3 or 4 candidates
 # in for final loop: pairs: for each possible combination of 2 cells check if they have only 2 unique candidates
 # for triplets use all possible combinations of 3 cells and see if they have 3 unique numbers, etc.
+# in e.g. triplet 127 127 127 is triplet, but 127 12 17 also triplet! So need to look at separate numbers and not 127!!
 
 
 # PAIRS
@@ -95,7 +97,7 @@ for row in range(9):
     set9_list_compare = []
     for i in range(9):
         cell = df_str.iloc[row, i]
-        cell_sep = list(cell)
+        cell_sep = list(cell)   # in triplets need to separate 127 into '1','2','7',cause check on 12, 17 and 27 as well
         set9_list = set9_list + [cell_sep]
     for q in range(9):
         if len(set9_list[q]) == 2:
